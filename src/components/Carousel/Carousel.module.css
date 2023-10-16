@@ -1,0 +1,59 @@
+.carousel {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.inner {
+    white-space: nowrap;
+    transition: transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.carousel-buttons button {
+    background-color: transparent;
+    color: #000;
+    border: none;
+    cursor: pointer;
+}
+
+.carousel-buttons button:focus {
+    animation: bump 300ms ease-out;
+}
+
+.indicators button {
+    padding: 0;
+    margin: 0 0.25rem;
+    font-size: 25px;
+}
+
+.arrow-btn {
+    font-size: 50px;
+}  
+  @keyframes bump {
+    0% {
+      transform: scale(1);
+    }
+    10% {
+      transform: scale(0.9); 
+    }
+    30% {
+      transform: scale(1.1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }

@@ -1,0 +1,34 @@
+.carousel-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    padding: 0;
+} 
+
+.carousel-item img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    padding: 0;
+    z-index: -10;
+    height: 100%;
+}
+
+.carousel-text {
+    font-size: 5.15rem;
+    font-weight: bold;
+    white-space: normal;
+    color: #000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    color: #85a8c5;
+}
