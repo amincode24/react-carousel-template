@@ -34,14 +34,22 @@ const items = [
 const Carousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const updateIndex = (newIndex) => {
-    if (newIndex < 0) {
-      return (newIndex = 0);
-    } else if (newIndex >= items.length) {
-      newIndex = items.length - 1;
+
+  const nextSlideHaandler = () => {
+    if(activeSlide + 1 > items.length - 1) {
+      setActiveSlide(0)
+    } else {
+      setActiveSlide(activeSlide + 1)
     }
-    setActiveSlide(newIndex);
-  };
+  }
+
+  const prevSlideHandler = () => {
+    if(activeSlide === 0) {
+      setActiveSlide(items.length - 1)
+    } else {
+      setActiveSlide(activeSlide - 1)
+    }
+  }
   return (
     <Container>
       <div className={classes.carousel}>
@@ -60,9 +68,7 @@ const Carousel = () => {
         <div className={classes["carousel-buttons"]}>
           <button
             className={classes["arrow-btn"]}
-            onClick={() => {
-              updateIndex(activeSlide - 1);
-            }}
+            onClick={prevSlideHandler}
           >
             <GrFormPrevious />
           </button>
@@ -70,7 +76,7 @@ const Carousel = () => {
             {items.map((item, index) => (
               <button
                 onClick={() => {
-                  updateIndex(index);
+                  setActiveSlide(index);
                 }}
               >
                 {index === activeSlide ? (
@@ -83,9 +89,7 @@ const Carousel = () => {
           </div>
           <button
             className={classes["arrow-btn"]}
-            onClick={() => {
-              updateIndex(activeSlide + 1);
-            }}
+            onClick={nextSlideHaandler}
           >
             <GrFormNext />
           </button>

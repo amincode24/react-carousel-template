@@ -27,7 +27,7 @@
     cursor: pointer;
 }
 
-.carousel-buttons button:focus {
+.carousel-buttons button:active {
     animation: bump 300ms ease-out;
 }
 
