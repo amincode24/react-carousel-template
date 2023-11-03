@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Carousel.module.css";
 import CarouselItem from "./CarouselItem";
 import slide1 from "../../assets/147476.jpg";
@@ -34,22 +34,35 @@ const items = [
 const Carousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
-
   const nextSlideHaandler = () => {
-    if(activeSlide + 1 > items.length - 1) {
-      setActiveSlide(0)
+    if (activeSlide + 1 > items.length - 1) {
+      setActiveSlide(0);
     } else {
-      setActiveSlide(activeSlide + 1)
+      setActiveSlide(activeSlide + 1);
     }
-  }
+  };
 
   const prevSlideHandler = () => {
-    if(activeSlide === 0) {
-      setActiveSlide(items.length - 1)
+    if (activeSlide === 0) {
+      setActiveSlide(items.length - 1);
     } else {
-      setActiveSlide(activeSlide - 1)
+      setActiveSlide(activeSlide - 1);
     }
-  }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (activeSlide + 1 > items.length - 1) {
+        setActiveSlide(0);
+      } else {
+        setActiveSlide(activeSlide + 1);
+      }
+    }, [3800]);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [activeSlide]);
   return (
     <Container>
       <div className={classes.carousel}>
@@ -66,10 +79,7 @@ const Carousel = () => {
           ))}
         </div>
         <div className={classes["carousel-buttons"]}>
-          <button
-            className={classes["arrow-btn"]}
-            onClick={prevSlideHandler}
-          >
+          <button className={classes["arrow-btn"]} onClick={prevSlideHandler}>
             <GrFormPrevious />
           </button>
           <div className={classes.indicators}>
@@ -78,6 +88,7 @@ const Carousel = () => {
                 onClick={() => {
                   setActiveSlide(index);
                 }}
+                key={item.id}
               >
                 {index === activeSlide ? (
                   <BiRadioCircleMarked />
@@ -87,10 +98,7 @@ const Carousel = () => {
               </button>
             ))}
           </div>
-          <button
-            className={classes["arrow-btn"]}
-            onClick={nextSlideHaandler}
-          >
+          <button className={classes["arrow-btn"]} onClick={nextSlideHaandler}>
             <GrFormNext />
           </button>
         </div>
